@@ -17,6 +17,12 @@ public class TaxTable {
 				+((income<=71950)==true?1:0)
 				+((income<=150150)==true?1:0)
 				+((income<=326450)==true?1:0);
+		// n为5是为第一档
+		// n为4是为第二档
+		// n为3是为第三档
+		// n为2是为第四档
+		// n为1是为第五档
+		// n为0是为第六档
 		switch(n) {
 		case 0:
 			tax=94727.50+(income-326450)*0.35;
@@ -60,6 +66,12 @@ public class TaxTable {
 				+((income<=119950)==true?1:0)
 				+((income<=182800)==true?1:0)
 				+((income<=326450)==true?1:0);
+		// n为5是为第一档
+		// n为4是为第二档
+		// n为3是为第三档
+		// n为2是为第四档
+		// n为1是为第五档
+		// n为0是为第六档
 		switch(n) {
 		case 0:
 			tax=88320.00+(income-326450)*0.35;
@@ -102,6 +114,12 @@ public class TaxTable {
 				+((income<=59975)==true?1:0)
 				+((income<=91400)==true?1:0)
 				+((income<=163225)==true?1:0);
+		// n为5是为第一档
+		// n为4是为第二档
+		// n为3是为第三档
+		// n为2是为第四档
+		// n为1是为第五档
+		// n为0是为第六档
 		switch(n) {
 		case 0:
 			tax=44160.00+(income-163225)*0.35;
@@ -145,6 +163,12 @@ public class TaxTable {
 				+((income<=102800)==true?1:0)
 				+((income<=166450)==true?1:0)
 				+((income<=326450)==true?1:0);
+		// n为5是为第一档
+		// n为4是为第二档
+		// n为3是为第三档
+		// n为2是为第四档
+		// n为1是为第五档
+		// n为0是为第六档
 		switch(n) {
 		case 0:
 			tax=91819.50+(income-326450)*0.35;
@@ -183,6 +207,7 @@ public class TaxTable {
 		System.out.printf("Income              Joint     Separate  a House   \n");
 		System.out.println("");
 		for(double income=50000;income<=60000;income+=50) {
+			//循环打印50000~60000的数据
 		System.out.printf("%-,10.0f%-,10.1f%-,10.1f%-,10.1f%-,10.1f\n", income,ScheduleX(income),ScheduleY1(income),ScheduleY2(income),ScheduleZ(income));
 		}
 	}

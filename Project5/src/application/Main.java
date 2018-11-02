@@ -22,18 +22,15 @@ import javafx.scene.layout.VBox;
 
 
 public class Main extends Application {
-	ArrayList<String>answers=new ArrayList<String>();
-	CardPane cardpane=new CardPane();
-	int c1,c2,c3,c4=0;
-	 int v1,v2,v3,v4=0;
-	Random random = new Random();
+	ArrayList<String>answers=new ArrayList<String>();//保存24点所有可能的答案
+	CardPane cardpane=new CardPane();				//主要布局
+	int c1,c2,c3,c4=0;								//保存随机出的四个卡片序号
+	Random random = new Random();					//随机用
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			GridPane root = new GridPane();		//主窗口
 			
-			
-			GridPane root = new GridPane();
-			 root.gridLinesVisibleProperty();
 			root.setHgap(20);
 			root.setVgap(20);
 			root.setAlignment(Pos.CENTER);
@@ -53,6 +50,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root,500,300);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Project5");
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -165,6 +163,7 @@ public class Main extends Application {
 		 num.clear();
 	  }
 		  private boolean isCorrect(String expr) throws ScriptException {
+			  //使用ScriptEngineManager，以脚本语言处理方法来读取输入字符串，可以直接算出输入的公式结果，如果不合法会
 			  ScriptEngineManager manager = new ScriptEngineManager();
 			  ScriptEngine engine = manager.getEngineByName("js");
 			  Object result = engine.eval(expr);
