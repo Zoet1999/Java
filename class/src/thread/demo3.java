@@ -2,7 +2,7 @@ package thread;
 
 public class demo3 {
     public static void main(String[] args) throws InterruptedException {
-
+ 
         Object lock = new Object();
 
         ThreadA a = new ThreadA(lock);

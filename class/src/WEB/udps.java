@@ -9,8 +9,8 @@ public class udps {
 	public static void main(String[] args) {
 		try {
 			byte[] buf=new byte[1024];
-			DatagramSocket socket=new DatagramSocket(8000);
-			System.out.println("Server stated on port 8000,"+new Date());
+			DatagramSocket socket=new DatagramSocket(8888);
+			System.out.println("Server stated on port 8888,"+new Date());
 			
 			DatagramPacket rcvPkt=new DatagramPacket(buf,buf.length);
 			DatagramPacket sndPkt=new DatagramPacket(buf,buf.length);
