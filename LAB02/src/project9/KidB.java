@@ -12,7 +12,7 @@ import java.util.Random;
 public class KidB {
 	 public static void main(String[] args){
 		 
-
+		 	String str=null;
 			byte[] buf=new byte[1024];
 			InetAddress server;
 		
@@ -58,7 +58,12 @@ public class KidB {
 					sndPkt.setData(buf);
 					socket.send(sndPkt);
 					//System.out.println("send ch:"+ch);
-					System.out.println((i+1)+":"+ch+"  "+time+"ms");
+					switch(ch) {
+					case 1: str="Rock";break;
+					case 2: str="scissors";break;
+					case 3: str="paper";break;
+					}
+					System.out.println((i+1)+":"+str+"  "+time+"ms");
 				}
 				
 		

@@ -1,28 +1,24 @@
 /**
- * 该代码是用wait()，notify(),noyifyAll实现Project8
+ * 该代码是用Join()实现Project8
  */
+
 package project8;
 
 import java.util.Random;
 import java.util.Scanner;
-public class GetWinner {
+
+public class GetWinner2 {
 	 public static void main(String[] args) throws InterruptedException {
-		    Object lock=new Object();
-		    Object lock2=new Object();
 		    Compare2 co=new Compare2();
 			System.out.println("请输入比较次数：");
 			Scanner sc=new Scanner(System.in);
 			int n=sc.nextInt();
-		 	ThreadA a = new ThreadA(lock, lock2,co,n);
-	        a.start();
-	        ThreadB b = new ThreadB(lock, lock2,co,n);
-	        b.start();
-	        ThreadC c = new ThreadC(lock, lock2,co,n);
+	        ThreadC2 c = new ThreadC2(co,n);
 	        c.start();
 	        sc.close();
 	    }
 }
-class Compare{
+class Compare2{
 	 private int a;
 	 private int b;
 	 private int ta;
@@ -54,25 +50,18 @@ class Compare{
 
 }
 
-class ThreadA extends Thread {
-	 private Object lock;
-	 private Object lock2;
-	 private int n;
+class ThreadA2 extends Thread {
+
+
 	 private Compare2 c;
-	    public ThreadA(Object lock,Object lock2,Compare2 c,int n) {
+	    public ThreadA2(Compare2 c) {
 	        super();
-	        this.lock = lock;
-	        this.lock2=lock2;
 	        this.c=c;
-	        this.n=n;
 	    }
 	@Override
-    public void run() {
+   public void run() {
 		try {
-			for(int i=0;i<n;i++){
-			synchronized (lock) {
-			lock.wait();
-			}
+			
 			int time;
 			Random r=new Random();
 			time=r.nextInt(1001);
@@ -81,33 +70,21 @@ class ThreadA extends Thread {
 			sleep(time);
 			c.setA(ch);
 			c.setTa(time);
-			synchronized (lock2) {
-				lock2.notify();
-				}}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 	}
 }
-class ThreadB extends Thread {
-	 private Object lock;
-	 private Object lock2;
+class ThreadB2 extends Thread {
+
 	 private Compare2 c;
-	 private int n;
-	    public ThreadB(Object lock,Object lock2, Compare2 c,int n) {
+	    public ThreadB2(Compare2 c) {
 	        super();
-	        this.lock = lock;
-	        this.lock2=lock2;
 	        this.c=c;
-	        this.n=n;
 	    }
 	@Override
-    public void run() {
+   public void run() {
 		try {
-			for(int i=0;i<n;i++) {
-			synchronized (lock) {
-			lock.wait();
-			}
 			int time;
 			Random r=new Random();
 			time=r.nextInt(1001);
@@ -116,30 +93,26 @@ class ThreadB extends Thread {
 			c.setB(ch);
 			c.setTb(time);
 			sleep(time);
-			synchronized (lock2) {
-				lock2.notify();
-				}
-			}
+			
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			
-    }
+   }
 }
-class ThreadC extends Thread {
-	 private Object lock;
-	 private Object lock2;
+class ThreadC2 extends Thread {
+
+	 private ThreadA2 a;
+	 private ThreadB2 b;
 	 private Compare2 c;
 	 private int n;
-	    public ThreadC(Object lock,Object lock2,Compare2 c,int n) {
+	    public ThreadC2(Compare2 c,int n) {
 	        super();
-	        this.lock = lock;
-	        this.lock2=lock2;
 	        this.c=c;
 	        this.n=n;
 	    }
 	@Override
-    public void run() {
+   public void run() {
 		try {
 
 			int chA;
@@ -152,14 +125,12 @@ class ThreadC extends Thread {
 			System.out.println("Round   Sleep    Random     Points     Sleep    Random     Points");
 			System.out.println("         time   character  obtained     time   character  obtained");
 			for(int i=0;i<n;i++) {
-				synchronized (lock) {
-					lock.notifyAll();}
-
-				synchronized (lock2) {
-					lock2.wait();
-					lock2.wait();
-				}
-				
+				a=new ThreadA2(c);
+				b=new ThreadB2(c);
+				a.start();
+				b.start();
+				a.join();
+				b.join();
 				chA=c.getA();
 				chB=c.getB();
 				timeA=c.getTa();
@@ -190,6 +161,6 @@ class ThreadC extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-    }
+       
+   }
 }

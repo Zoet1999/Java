@@ -204,8 +204,8 @@ class Compare extends Thread{
 			case 2: strB="scissors";break;
 			case 3: strB="paper";break;
 			}
-			System.out.printf("%1$4d%2$8dms%3$8s%4$12d",(i+1),TimeA,strA,scoreA);
-			System.out.printf("%1$8dms%2$8s%3$12d\n",TimeB,strB,scoreB);
+			System.out.printf("%1$4d    %2$-4dms   %3$-8s     %4$-9d",(i+1),TimeA,strA,scoreA);
+			System.out.printf("%1$-4dms   %2$-8s     %3$-12d\n",TimeB,strB,scoreB);
 	}
 	Object lock1;
 	Object lock2;

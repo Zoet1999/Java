@@ -9,6 +9,7 @@ import java.util.Random;
 public class KidA {
 	 public static void main(String[] args){
 			try {
+				String str = null;
 				Socket socket=new Socket("127.0.0.1",8888);
 				DataInputStream in=new DataInputStream(socket.getInputStream());
 				DataOutputStream out=new DataOutputStream(socket.getOutputStream());
@@ -29,7 +30,13 @@ public class KidA {
 					//System.out.println("send time:"+time);
 					out.writeInt(ch);
 					//System.out.println("send ch:"+ch);
-					System.out.println((i+1)+":"+ch+"  "+time+"ms");
+					
+					switch(ch) {
+					case 1: str="Rock";break;
+					case 2: str="scissors";break;
+					case 3: str="paper";break;
+					}
+					System.out.println((i+1)+":"+str+"  "+time+"ms");
 				}
 				
 				socket.close();
